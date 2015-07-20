@@ -20,7 +20,7 @@ public class FormBaseCell: UITableViewCell {
     
     public weak var formViewController: FormViewController!
     
-    private var customConstraints: [AnyObject] = []
+    private var customConstraints: [NSLayoutConstraint] = []
     
     /// MARK: Init
     
@@ -28,7 +28,7 @@ public class FormBaseCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -95,21 +95,21 @@ public class FormBaseCell: UITableViewCell {
             contentView.removeConstraints(customConstraints)
         }
         
-        var views = constraintsViews()
+        let views = constraintsViews()
         
         customConstraints.removeAll()
         
-        var visualConstraints: NSArray!
+        var visualConstraints: [String]
         
         if let visualConstraintsClosure = rowDescriptor.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] as? VisualConstraintsClosure {
             visualConstraints = visualConstraintsClosure(self)
         }
         else {
-            visualConstraints = self.defaultVisualConstraints()
+            visualConstraints = defaultVisualConstraints()
         }
         
         for visualConstraint in visualConstraints {
-            let constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualConstraint as! String, options: NSLayoutFormatOptions(0), metrics: nil, views: views)
+            let constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualConstraint, options: [], metrics: nil, views: views)
             for constraint in constraints {
                 customConstraints.append(constraint)
             }

@@ -38,8 +38,8 @@ public enum FormRowType {
 
 public typealias DidSelectClosure = (Void) -> Void
 public typealias UpdateClosure = (FormRowDescriptor) -> Void
-public typealias TitleFormatterClosure = (NSObject) -> String!
-public typealias VisualConstraintsClosure = (FormBaseCell) -> NSArray
+public typealias TitleFormatterClosure = (AnyObject) -> String?
+public typealias VisualConstraintsClosure = (FormBaseCell) -> [String]
 
 public class FormRowDescriptor: NSObject {
 
@@ -123,19 +123,19 @@ public class FormRowDescriptor: NSObject {
     
     /// MARK: Public interface
     
-    public func titleForOptionAtIndex(index: Int) -> String! {
-        if let options = configuration[FormRowDescriptor.Configuration.Options] as? NSArray {
-            return titleForOptionValue(options[index] as! NSObject)
+    public func titleForOptionAtIndex(index: Int) -> String? {
+        if let options = configuration[FormRowDescriptor.Configuration.Options] as? [AnyObject] {
+            return titleForOptionValue(options[index])
         }
         return nil
     }
     
-    public func titleForOptionValue(optionValue: NSObject) -> String! {
+    public func titleForOptionValue(optionValue: AnyObject) -> String? {
         if let titleFormatter = configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] as? TitleFormatterClosure {
             return titleFormatter(optionValue)
         }
         else if optionValue is String {
-            return optionValue as! String
+            return optionValue as? String
         }
         return "\(optionValue)"
     }

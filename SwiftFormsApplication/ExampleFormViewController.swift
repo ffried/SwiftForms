@@ -31,7 +31,7 @@ class ExampleFormViewController: FormViewController {
         static let textView = "textview"
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.loadForm()
     }
@@ -105,7 +105,8 @@ class ExampleFormViewController: FormViewController {
         row = FormRowDescriptor(tag: Static.segmented, rowType: .SegmentedControl, title: "Priority")
         row.configuration[FormRowDescriptor.Configuration.Options] = [0, 1, 2, 3]
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
-            switch( value ) {
+            guard let val = value as? Int else { return nil }
+            switch( val ) {
             case 0:
                 return "None"
             case 1:
@@ -131,7 +132,8 @@ class ExampleFormViewController: FormViewController {
         row = FormRowDescriptor(tag: Static.picker, rowType: .Picker, title: "Gender")
         row.configuration[FormRowDescriptor.Configuration.Options] = ["F", "M", "U"]
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
-            switch( value ) {
+            guard let val = value as? String else { return nil }
+            switch( val ) {
             case "F":
                 return "Female"
             case "M":
@@ -153,7 +155,8 @@ class ExampleFormViewController: FormViewController {
         row.configuration[FormRowDescriptor.Configuration.Options] = [0, 1, 2, 3, 4]
         row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = true
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
-            switch( value ) {
+            guard let val = value as? Int else { return nil }
+            switch( val ) {
             case 0:
                 return "Restaurant"
             case 1:
