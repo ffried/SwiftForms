@@ -30,6 +30,7 @@ public enum FormRowType {
     case Date
     case Time
     case DateAndTime
+    case Countdown
     case Stepper
     case Slider
     case MultipleSelector
@@ -40,6 +41,7 @@ public typealias DidSelectClosure = (Void) -> Void
 public typealias UpdateClosure = (FormRowDescriptor) -> Void
 public typealias TitleFormatterClosure = (AnyObject) -> String?
 public typealias VisualConstraintsClosure = (FormBaseCell) -> [String]
+public typealias CountdownFormatterClosure = (NSTimeInterval) -> String
 
 public class FormRowDescriptor: NSObject {
 
@@ -78,6 +80,8 @@ public class FormRowDescriptor: NSObject {
         public static let ShowsInputToolbar = "FormRowDescriptorConfigurationShowsInputToolbar"
         
         public static let DateFormatter = "FormRowDescriptorConfigurationDateFormatter"
+        
+        public static let CountdownFormatterClosure = "FormRowDescriptorConfigurationCountdownFormatterClosure"
     }
     
     /// MARK: Properties
