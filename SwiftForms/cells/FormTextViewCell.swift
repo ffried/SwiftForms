@@ -73,7 +73,7 @@ public class FormTextViewCell : FormBaseCell, UITextViewDelegate {
         
         if self.imageView!.image != nil {
             
-            if titleLabel.text != nil && (titleLabel.text!).characters.count > 0 {
+            if titleLabel.text?.characters.count > 0 {
                 return ["H:[imageView]-[titleLabel]-[textField]-16-|"]
             }
             else {
@@ -81,7 +81,7 @@ public class FormTextViewCell : FormBaseCell, UITextViewDelegate {
             }
         }
         else {
-            if titleLabel.text != nil && (titleLabel.text!).characters.count > 0 {
+            if titleLabel.text?.characters.count > 0 {
                 return ["H:|-16-[titleLabel]-[textField]-16-|"]
             }
             else {

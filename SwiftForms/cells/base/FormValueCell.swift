@@ -60,7 +60,7 @@ public class FormValueCell: FormBaseCell {
             rightPadding = 16
         }
         
-        if titleLabel.text != nil && (titleLabel.text!).characters.count > 0 {
+        if titleLabel.text?.characters.count > 0 {
             return ["H:|-16-[titleLabel]-[valueLabel]-\(rightPadding)-|"]
         }
         else {
