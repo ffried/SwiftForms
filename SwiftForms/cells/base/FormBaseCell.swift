@@ -99,17 +99,17 @@ public class FormBaseCell: UITableViewCell {
         
         customConstraints.removeAll()
         
-        var visualConstraints: NSArray!
+        var visualConstraints: [String]
         
         if let visualConstraintsClosure = rowDescriptor.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] as? VisualConstraintsClosure {
             visualConstraints = visualConstraintsClosure(self)
         }
         else {
-            visualConstraints = self.defaultVisualConstraints()
+            visualConstraints = defaultVisualConstraints()
         }
         
         for visualConstraint in visualConstraints {
-            let constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualConstraint as! String, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+            let constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualConstraint, options: [], metrics: nil, views: views)
             for constraint in constraints {
                 customConstraints.append(constraint)
             }

@@ -41,7 +41,7 @@ public class FormSelectorCell: FormValueCell {
             title = rowDescriptor.titleForOptionValue(selectedValue)
         }
         
-        if title != nil && title.characters.count > 0 {
+        if title?.characters.count > 0 {
             valueLabel.text = title
             valueLabel.textColor = UIColor.blackColor()
         }

@@ -20,8 +20,8 @@ public class FormOptionsSelectorController: UITableViewController, FormSelector 
         super.init(style: .Grouped)
     }
 
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -65,7 +65,7 @@ public class FormOptionsSelectorController: UITableViewController, FormSelector 
         cell!.textLabel!.text = formCell.rowDescriptor.titleForOptionValue(optionValue)
         
         if let selectedOptions = formCell.rowDescriptor.value as? [NSObject] {
-            if (selectedOptions.indexOf(optionValue as NSObject) != nil) {
+            if (selectedOptions.contains(optionValue as NSObject)) {
                 
                 if let checkMarkAccessoryView = formCell.rowDescriptor.configuration[FormRowDescriptor.Configuration.CheckmarkAccessoryView] as? UIView {
                     cell!.accessoryView = checkMarkAccessoryView

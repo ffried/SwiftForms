@@ -69,7 +69,7 @@ public class FormSegmentedControlCell: FormBaseCell {
     
     public override func defaultVisualConstraints() -> [String] {
         
-        if titleLabel.text != nil && (titleLabel.text!).characters.count > 0 {
+        if titleLabel.text?.characters.count > 0 {
             return ["H:|-16-[titleLabel]-16-[segmentedControl]-16-|"]
         }
         else {
